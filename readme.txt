@@ -8,51 +8,29 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Restrict the WooCommerce cart to products from a single product category at a time.
+This plugin ensures customers can only buy products from one category at a time.
 
 == Description ==
 
-Allow Only 1 Category in Cart for WooCommerce lets you stop customers from mixing products from different categories in the same order.
+This plugin stops customers from mixing products from different categories in the same order. If a product is already in the cart, adding a product from a different category will either be blocked, or the cart will be emptied first, depending on the option you choose.
 
-Once enabled, when a customer tries to add a product from a different category than what's already in their cart, you can choose to:
+This is useful for stores that need to keep certain product categories separate at checkout, for example because they need different shipping, come from different suppliers, or are fulfilled differently.
 
-* **Block** the new product and show an error message, or
-* **Replace** the cart contents automatically with the new product and show a notice explaining what happened
-
-Both messages are fully customizable from WooCommerce > Settings > Only 1 Category.
-
-This is useful for stores that need to keep certain product categories separate at checkout, for example due to different shipping methods, suppliers, or fulfillment processes.
-
-= Features =
-
-* Enable/disable the restriction with one checkbox
-* Choose between "block" and "replace" behavior
-* Customizable error/notice messages, with a `{category}` placeholder
-* No settings bloat, no external services, no tracking
+Once activated, go to WooCommerce > Settings > Only 1 Category to turn the restriction on and choose what should happen.
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/allow-only-1-category-in-cart-for-woocommerce`, or install the plugin through the WordPress Plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Go to WooCommerce > Settings > Only 1 Category to configure.
+Upload the plugin folder to `/wp-content/plugins/`, activate it through WordPress's Plugins menu, then go to WooCommerce > Settings > Only 1 Category to turn it on.
 
 == Frequently Asked Questions ==
 
 = What happens if a product belongs to more than one category? =
 
-If a product shares at least one category with what's already in the cart, it's allowed. It only blocks/replaces when there is no category overlap at all.
-
-= Does this affect the checkout, or only the cart? =
-
-It only runs when a product is added to the cart (`woocommerce_add_to_cart_validation`). It does not add any checks at checkout.
+It's allowed, as long as it shares at least one category with what's already in the cart.
 
 = Does this work with variable products? =
 
-Yes. Categories are read from the parent product, since categories aren't assigned to individual variations.
-
-== Screenshots ==
-
-1. Plugin settings under WooCommerce > Settings > Only 1 Category
+Yes, it works with all product types.
 
 == Changelog ==
 
