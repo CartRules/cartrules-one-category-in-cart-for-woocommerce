@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name:          Allow Only 1 Category in Cart for WooCommerce
- * Plugin URI:           https://businessbloomer.com/
  * Description:          Restrict the WooCommerce cart to products from a single product category at a time.
  * Version:              1.0.0
  * Requires at least:    6.5
