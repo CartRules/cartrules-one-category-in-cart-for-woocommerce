@@ -1,4 +1,4 @@
-=== Allow Only 1 Category in Cart for WooCommerce ===
+=== Cart Rules: One Category in Cart for WooCommerce ===
 Contributors: businessbloomer
 Tags: woocommerce, cart, product category, restrict cart, checkout
 Requires at least: 6.5

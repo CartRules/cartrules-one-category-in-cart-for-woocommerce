@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Blocks or replaces cart contents when a product from a different category is added.
  */
-class AOC_Cart_Restriction {
+class CartRules_OCIC_Cart_Restriction {
 
 	public function __construct() {
 		add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'validate_add_to_cart' ), 10, 2 );
@@ -17,7 +17,7 @@ class AOC_Cart_Restriction {
 	 * @return bool
 	 */
 	public function validate_add_to_cart( $passed, $product_id ) {
-		if ( ! $passed || 'yes' !== get_option( 'aoc_enabled', 'no' ) || WC()->cart->is_empty() ) {
+		if ( ! $passed || 'yes' !== get_option( 'cartrules_ocic_enabled', 'no' ) || WC()->cart->is_empty() ) {
 			return $passed;
 		}
 
@@ -41,17 +41,17 @@ class AOC_Cart_Restriction {
 
 		$existing_category_name = $this->get_category_name( $cart_categories[0] );
 
-		if ( 'replace' === get_option( 'aoc_mode', 'deny' ) ) {
+		if ( 'replace' === get_option( 'cartrules_ocic_mode', 'deny' ) ) {
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				WC()->cart->remove_cart_item( $cart_item_key );
 			}
 
-			wc_add_notice( $this->build_message( 'aoc_replace_message', $existing_category_name ), 'notice' );
+			wc_add_notice( $this->build_message( 'cartrules_ocic_replace_message', $existing_category_name ), 'notice' );
 
 			return true;
 		}
 
-		wc_add_notice( $this->build_message( 'aoc_deny_message', $existing_category_name ), 'error' );
+		wc_add_notice( $this->build_message( 'cartrules_ocic_deny_message', $existing_category_name ), 'error' );
 
 		return false;
 	}
