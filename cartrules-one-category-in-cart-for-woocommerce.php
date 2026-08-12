@@ -7,7 +7,7 @@
  * Requires PHP:         7.4
  * Requires Plugins:     woocommerce
  * WC requires at least: 7.1
- * WC tested up to:      11.0
+ * WC tested up to:      11.0.1
  * Author:               Rodolfo Melogli
  * Author URI:           https://businessbloomer.com/
  * License:              GPL v2 or later

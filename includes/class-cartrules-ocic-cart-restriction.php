@@ -7,11 +7,24 @@ defined( 'ABSPATH' ) || exit;
  */
 class CartRules_OCIC_Cart_Restriction {
 
+	/**
+	 * Cart item keys staged for removal in "replace" mode, keyed by the product id that
+	 * triggered the replacement. Populated during validation, consumed by handle_replace().
+	 *
+	 * @var array<int, array{cart_item_keys: string[], category_name: string}>
+	 */
+	private $pending_replacements = array();
+
 	public function __construct() {
 		add_filter( 'woocommerce_add_to_cart_validation', array( $this, 'validate_add_to_cart' ), 10, 2 );
+		add_action( 'woocommerce_add_to_cart', array( $this, 'handle_replace' ), 10, 2 );
 	}
 
 	/**
+	 * Other plugins may also hook woocommerce_add_to_cart_validation. Removing cart items here
+	 * instead of in handle_replace() would mutate the cart mid-filter-chain, so a plugin
+	 * validating later would see an already-emptied cart and skip its own check.
+	 *
 	 * @param bool $passed
 	 * @param int  $product_id
 	 * @return bool
@@ -42,11 +55,10 @@ class CartRules_OCIC_Cart_Restriction {
 		$existing_category_name = $this->get_category_name( $cart_categories[0] );
 
 		if ( 'replace' === get_option( 'cartrules_ocic_mode', 'deny' ) ) {
-			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-				WC()->cart->remove_cart_item( $cart_item_key );
-			}
-
-			wc_add_notice( $this->build_message( 'cartrules_ocic_replace_message', $existing_category_name ), 'notice' );
+			$this->pending_replacements[ $product_id ] = array(
+				'cart_item_keys' => array_keys( WC()->cart->get_cart() ),
+				'category_name'  => $existing_category_name,
+			);
 
 			return true;
 		}
@@ -54,6 +66,28 @@ class CartRules_OCIC_Cart_Restriction {
 		wc_add_notice( $this->build_message( 'cartrules_ocic_deny_message', $existing_category_name ), 'error' );
 
 		return false;
+	}
+
+	/**
+	 * Runs once WooCommerce has actually added the new item to the cart, so every plugin
+	 * hooked into the validation filter has already had a chance to evaluate the original cart.
+	 *
+	 * @param string $cart_item_key
+	 * @param int    $product_id
+	 */
+	public function handle_replace( $cart_item_key, $product_id ) {
+		if ( ! isset( $this->pending_replacements[ $product_id ] ) ) {
+			return;
+		}
+
+		$replacement = $this->pending_replacements[ $product_id ];
+		unset( $this->pending_replacements[ $product_id ] );
+
+		foreach ( $replacement['cart_item_keys'] as $conflicting_item_key ) {
+			WC()->cart->remove_cart_item( $conflicting_item_key );
+		}
+
+		wc_add_notice( $this->build_message( 'cartrules_ocic_replace_message', $replacement['category_name'] ), 'notice' );
 	}
 
 	private function build_message( $option_id, $category_name ) {
