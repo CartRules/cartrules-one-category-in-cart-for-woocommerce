@@ -18,7 +18,7 @@ class CartRules_Settings_Tab extends WC_Settings_Page {
 
 	public function __construct() {
 		$this->id    = 'cartrules';
-		$this->label = __( 'Cart Rules', 'cart-rules-one-category-in-cart' );
+		$this->label = __( 'Cart Rules', 'cartrules-one-category-in-cart-for-woocommerce' );
 
 		parent::__construct();
 	}

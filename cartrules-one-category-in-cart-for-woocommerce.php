@@ -12,7 +12,7 @@
  * Author URI:           https://businessbloomer.com/
  * License:              GPL v2 or later
  * License URI:          https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:          cart-rules-one-category-in-cart
+ * Text Domain:          cartrules-one-category-in-cart-for-woocommerce
  */
 
 defined( 'ABSPATH' ) || exit;
