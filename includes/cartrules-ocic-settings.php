@@ -10,13 +10,13 @@ add_filter( 'woocommerce_get_sections_cartrules', 'cartrules_ocic_add_settings_s
 add_filter( 'woocommerce_get_settings_cartrules', 'cartrules_ocic_settings_fields', 10, 2 );
 
 function cartrules_ocic_add_settings_section( $sections ) {
-	$sections[''] = __( 'One Category in Cart', 'cartrules-one-category-in-cart-for-woocommerce' );
+	$sections['ocic'] = __( 'One Category in Cart', 'cartrules-one-category-in-cart-for-woocommerce' );
 
 	return $sections;
 }
 
 function cartrules_ocic_settings_fields( $settings, $section_id ) {
-	if ( '' !== $section_id ) {
+	if ( 'ocic' !== $section_id ) {
 		return $settings;
 	}
 
@@ -24,7 +24,11 @@ function cartrules_ocic_settings_fields( $settings, $section_id ) {
 		array(
 			'title' => __( 'One Category in Cart', 'cartrules-one-category-in-cart-for-woocommerce' ),
 			'type'  => 'title',
-			'desc'  => __( 'Prevent customers from mixing products from different categories in the same cart.', 'cartrules-one-category-in-cart-for-woocommerce' ),
+			/* translators: %s: link to the CartRules PRO plugin page. */
+			'desc'  => sprintf(
+				__( 'Prevent customers from mixing products from different categories in the same cart. Need to restrict the cart by product, tag, brand, shipping class, or cart total instead? Check out %s.', 'cartrules-one-category-in-cart-for-woocommerce' ),
+				'<a href="https://cartrules.com/" target="_blank" rel="noopener noreferrer">CartRules PRO</a>'
+			),
 			'id'    => 'cartrules_ocic_settings_title',
 		),
 		array(

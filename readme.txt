@@ -4,7 +4,7 @@ Tags: woocommerce, cart, product category, restrict cart, checkout
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,10 @@ No, the restriction only applies to the storefront cart. Orders added or changed
 3. Go to WooCommerce > Settings > CartRules > One Category in Cart to turn the restriction on and choose what should happen.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixed a settings section conflict that could occur when another CartRules plugin is active at the same time
+* Added a note in settings pointing to CartRules PRO for restricting the cart in other ways
 
 = 1.0.0 =
 * Initial release

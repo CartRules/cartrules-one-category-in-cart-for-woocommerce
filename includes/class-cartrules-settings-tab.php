@@ -23,7 +23,24 @@ class CartRules_Settings_Tab extends WC_Settings_Page {
 		parent::__construct();
 	}
 
+	/**
+	 * Every module registers its own section key via woocommerce_get_sections_cartrules,
+	 * so this tab owns none itself. But landing on the tab with no section in the URL
+	 * would otherwise render blank fields, since $current_section defaults to '' and no
+	 * module claims that key. Default $current_section to the first registered module,
+	 * same approach WooCommerce core uses for its own multi-module "Integrations" tab.
+	 */
 	protected function get_own_sections() {
+		global $current_section;
+
+		if ( empty( $current_section ) ) {
+			$sections = apply_filters( 'woocommerce_get_sections_' . $this->id, array() );
+
+			if ( ! empty( $sections ) ) {
+				$current_section = array_key_first( $sections );
+			}
+		}
+
 		return array();
 	}
 }
