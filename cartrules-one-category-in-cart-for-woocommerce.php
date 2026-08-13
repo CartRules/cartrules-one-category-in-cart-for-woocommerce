@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:          Cart Rules: One Category in Cart for WooCommerce
+ * Plugin Name:          CartRules One Category in Cart for WooCommerce
  * Description:          Restrict the WooCommerce cart to products from a single product category at a time.
  * Version:              1.0.0
  * Requires at least:    6.5
@@ -51,7 +51,7 @@ function cartrules_ocic_init() {
 }
 
 /**
- * Registers the shared "Cart Rules" settings tab if no other Cart Rules plugin has
+ * Registers the shared "CartRules" settings tab if no other CartRules plugin has
  * already added it; this module's own fields attach to it as a section (see
  * includes/cartrules-ocic-settings.php).
  */

@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Adds this module's "One Category in Cart" section to the shared "Cart Rules" tab.
+ * Adds this module's "One Category in Cart" section to the shared "CartRules" tab.
  */
 
 add_filter( 'woocommerce_get_sections_cartrules', 'cartrules_ocic_add_settings_section' );

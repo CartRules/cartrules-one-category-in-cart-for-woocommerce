@@ -1,4 +1,4 @@
-=== Cart Rules: One Category in Cart for WooCommerce ===
+=== CartRules One Category in Cart for WooCommerce ===
 Contributors: businessbloomer
 Tags: woocommerce, cart, product category, restrict cart, checkout
 Requires at least: 6.5
@@ -16,7 +16,7 @@ This plugin stops customers from mixing products from different categories in th
 
 This is useful for stores that need to keep certain product categories separate at checkout, for example because they need different shipping, come from different suppliers, or are fulfilled differently.
 
-Once activated, go to WooCommerce > Settings > Cart Rules > One Category in Cart to turn the restriction on and choose what should happen.
+Once activated, go to WooCommerce > Settings > CartRules > One Category in Cart to turn the restriction on and choose what should happen.
 
 Works with both the classic, shortcode-based cart and checkout, and the newer WooCommerce Cart and Checkout blocks.
 
@@ -42,7 +42,7 @@ No, the restriction only applies to the storefront cart. Orders added or changed
 
 1. Upload the plugin folder to `/wp-content/plugins/`, or install it through the Plugins menu in WordPress directly.
 2. Activate the plugin through the Plugins menu in WordPress.
-3. Go to WooCommerce > Settings > Cart Rules > One Category in Cart to turn the restriction on and choose what should happen.
+3. Go to WooCommerce > Settings > CartRules > One Category in Cart to turn the restriction on and choose what should happen.
 
 == Changelog ==
 
