@@ -24,11 +24,7 @@ function cartrules_ocic_settings_fields( $settings, $section_id ) {
 		array(
 			'title' => __( 'One Category in Cart', 'cartrules-one-category-in-cart-for-woocommerce' ),
 			'type'  => 'title',
-			/* translators: %s: link to the CartRules PRO plugin page. */
-			'desc'  => sprintf(
-				__( 'Prevent customers from mixing products from different categories in the same cart. Need to restrict the cart by product, tag, brand, shipping class, or cart total instead? Check out %s.', 'cartrules-one-category-in-cart-for-woocommerce' ),
-				'<a href="https://cartrules.com/" target="_blank" rel="noopener noreferrer">CartRules PRO</a>'
-			),
+			'desc'  => __( 'Prevent customers from mixing products from different categories in the same cart.', 'cartrules-one-category-in-cart-for-woocommerce' ),
 			'id'    => 'cartrules_ocic_settings_title',
 		),
 		array(

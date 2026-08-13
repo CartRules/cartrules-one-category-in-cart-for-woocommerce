@@ -48,7 +48,6 @@ No, the restriction only applies to the storefront cart. Orders added or changed
 
 = 1.0.1 =
 * Fixed a settings section conflict that could occur when another CartRules plugin is active at the same time
-* Added a note in settings pointing to CartRules PRO for restricting the cart in other ways
 
 = 1.0.0 =
 * Initial release
