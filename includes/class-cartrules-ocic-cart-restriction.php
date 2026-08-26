@@ -63,7 +63,7 @@ class CartRules_OCIC_Cart_Restriction {
 			return true;
 		}
 
-		wc_add_notice( $this->build_message( 'cartrules_ocic_deny_message', $existing_category_name ), 'error' );
+		wc_add_notice( $this->build_deny_message( $existing_category_name ), 'error' );
 
 		return false;
 	}
@@ -87,13 +87,25 @@ class CartRules_OCIC_Cart_Restriction {
 			WC()->cart->remove_cart_item( $conflicting_item_key );
 		}
 
-		wc_add_notice( $this->build_message( 'cartrules_ocic_replace_message', $replacement['category_name'] ), 'notice' );
+		wc_add_notice( $this->build_replace_message( $replacement['category_name'] ), 'notice' );
 	}
 
-	private function build_message( $option_id, $category_name ) {
-		$message = get_option( $option_id );
+	/**
+	 * The message options are only ever written to the database when the settings screen is
+	 * saved, so get_option() needs the same fallback the settings screen shows in the
+	 * textarea by default -- otherwise enabling this via wp_cli/wp option update, or a site
+	 * migration that drops the option row, silently produces a blank notice.
+	 */
+	private function build_deny_message( $category_name ) {
+		$default = __( 'You already have products from "{category}" in your cart. Please remove them first, or complete that order separately.', 'cartrules-one-category-in-cart-for-woocommerce' );
 
-		return str_replace( '{category}', $category_name, $message );
+		return str_replace( '{category}', $category_name, get_option( 'cartrules_ocic_deny_message', $default ) );
+	}
+
+	private function build_replace_message( $category_name ) {
+		$default = __( 'Your cart contained products from "{category}", so we replaced them with your new selection.', 'cartrules-one-category-in-cart-for-woocommerce' );
+
+		return str_replace( '{category}', $category_name, get_option( 'cartrules_ocic_replace_message', $default ) );
 	}
 
 	private function get_product_category_ids( $product_id ) {

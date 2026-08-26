@@ -2,9 +2,9 @@
 Contributors: businessbloomer
 Tags: woocommerce, cart, product category, restrict cart, checkout
 Requires at least: 6.5
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,9 @@ No, the restriction only applies to the storefront cart. Orders added or changed
 3. Go to WooCommerce > Settings > CartRules > One Category in Cart to turn the restriction on and choose what should happen.
 
 == Changelog ==
+
+= 1.0.2 =
+* Fixed the deny/replace notice showing up blank when the restriction is enabled without saving the settings screen first (e.g. via WP-CLI)
 
 = 1.0.1 =
 * Fixed a settings section conflict that could occur when another CartRules plugin is active at the same time
