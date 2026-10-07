@@ -1,0 +1,70 @@
+{
+    "product_id": 258424,
+    "best": "hero",
+    "pairs_with": [
+        "cartrules-one-brand-in-cart-for-woocommerce",
+        "cartrules-one-shipping-class-in-cart-for-woocommerce"
+    ],
+    "shots": [
+        {
+            "name": "hero",
+            "url": "/cart/",
+            "selector": ".wp-block-woocommerce-cart",
+            "pad": 24,
+            "viewport": [
+                1400,
+                900
+            ],
+            "settle": 3500,
+            "css": "#coming-soon-footer-banner{display:none!important}",
+            "actions": [
+                {
+                    "goto": "/?add-to-cart=334"
+                },
+                {
+                    "goto": "/?add-to-cart=335"
+                }
+            ],
+            "seed": {
+                "options": {
+                    "cartrules_ocic_enabled": "yes"
+                },
+                "php": "$__cat = get_term_by('name', 'Kitchen', 'product_cat'); if (!$__cat) { $__t = wp_insert_term('Kitchen', 'product_cat'); $__cat_id = $__t['term_id']; } else { $__cat_id = $__cat->term_id; } $__names = array(334 => array('Kitchen Whisk Set', '18.00'), 335 => array('Kitchen Cast-Iron Pan', '42.00')); foreach ($__names as $__id => $__data) { list($__n, $__price) = $__data; $__existing = get_post($__id); if (!$__existing || $__existing->post_title !== $__n) { $__p = new WC_Product_Simple(); $__p->set_name($__n); $__id = $__p->save(); } $__prod = wc_get_product($__id); $__prod->set_regular_price($__price); $__prod->save(); wp_set_object_terms($__id, array($__cat_id), 'product_cat'); } WC()->cart->empty_cart();"
+            }
+        },
+        {
+            "name": "top",
+            "slot": "row",
+            "url": "/wp-admin/admin.php?page=wc-settings&tab=cartrules&section=ocic",
+            "selector": [
+                "tr:has(#cartrules_ocic_enabled)",
+                "tr:has(#cartrules_ocic_mode)"
+            ],
+            "pad": 20,
+            "viewport": [
+                900,
+                500
+            ],
+            "settle": 1200
+        },
+        {
+            "name": "bottom",
+            "slot": "row",
+            "url": "/wp-admin/admin.php?page=wc-settings&tab=cartrules&section=ocic",
+            "selector": [
+                "tr:has(#cartrules_ocic_deny_message)",
+                "tr:has(#cartrules_ocic_replace_message)"
+            ],
+            "pad": 20,
+            "viewport": [
+                900,
+                700
+            ],
+            "settle": 1200
+        }
+    ],
+    "hero": {
+        "layout": "single",
+        "shot": "hero"
+    }
+}
